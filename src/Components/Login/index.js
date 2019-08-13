@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
-import { Actions } from "react-native-router-flux";
+import { Actions, ActionConst } from "react-native-router-flux";
 
 @observer
 class Login extends Component {
@@ -43,7 +43,7 @@ class Login extends Component {
     this.isLoading = false;
     if (isValid) {
       this.storeData();
-      Actions.home();
+      Actions.home({ type: ActionConst.REPLACE });
     } else {
       Alert.alert(
         "Error",

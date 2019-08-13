@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import BottomNav from "./BottomNav";
 import { ActionButton } from "react-native-material-ui";
-import { View, StyleSheet, Text, SafeAreaView, StatusBar } from "react-native";
+import { View, StyleSheet, Text, Button, AsyncStorage } from "react-native";
 import TodoItems from "./TodoItem";
 import { observer } from "mobx-react";
 import TodoStore from "../../stores/TodoStore";
 import ItemContainer from "./ItemContainer";
 import { observable } from "mobx";
 import EnterTodo from "./EnterTodo";
+import { Actions, ActionConst } from "react-native-router-flux";
 
 @observer
 class TodoApp extends Component {
@@ -21,20 +22,24 @@ class TodoApp extends Component {
       bottom: 60
     },
     headerText: {
-      textAlign: "center",
       color: "white"
     },
     header: {
       backgroundColor: "blue",
       height: 40,
       color: "white",
-      justifyContent: "center",
-      marginTop: StatusBar.currentHeight
+      padding: 15,
+      justifyContent: "space-between",
+      flexDirection: "row",
+      alignItems: "center"
     }
   });
 
   @observable addtodo = false;
-
+  onPressLogout = () => {
+    AsyncStorage.clear();
+    Actions.login({ type: ActionConst.REPLACE });
+  };
   handleAdd = () => {
     this.addtodo = !this.addtodo;
   };
@@ -43,6 +48,12 @@ class TodoApp extends Component {
       <View style={this.styles.container}>
         <View style={this.styles.header}>
           <Text style={this.styles.headerText}>Todo App</Text>
+          <Button
+            onPress={this.onPressLogout}
+            title="Logout"
+            color="#843584"
+            accessibilityLabel="a button to logout"
+          />
         </View>
 
         {this.addtodo ? (
