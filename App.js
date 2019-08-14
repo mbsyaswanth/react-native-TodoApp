@@ -4,6 +4,9 @@ import { Router, Scene, Action } from "react-native-router-flux";
 import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
+import * as RNLocalize from "react-native-localize";
+import i18n from "i18n-js";
+import memoize from "lodash.memoize";
 
 const store = new LoginStore();
 
