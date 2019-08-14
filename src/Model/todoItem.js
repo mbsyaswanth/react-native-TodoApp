@@ -1,10 +1,10 @@
 import { observable, action } from "mobx";
-
+import { persist } from "mobx-persist";
 export default class TodoItem {
-  id;
-  @observable description;
-  @observable isCompleted;
-  constructor(description) {
+  @persist id;
+  @persist @observable description;
+  @persist @observable isCompleted;
+  setDefault(description) {
     this.id = Date.now();
     this.description = description;
     this.isCompleted = false;

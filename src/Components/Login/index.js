@@ -70,20 +70,19 @@ class Login extends Component {
     }
   };
 
-  verifyIfAlreadyLogin = async () => {
-    try {
-      const login = await AsyncStorage.getItem("isLogin");
-      if (login === "true") {
-        Actions.home();
-        console.log("retrived islogin", login);
-      }
-    } catch (e) {
-      console.log("error retriving async value", e);
-    }
-  };
+  // verifyIfAlreadyLogin = async () => {
+  //   try {
+  //     const login = await AsyncStorage.getItem("isLogin");
+  //     if (login === "true") {
+  //       Actions.home();
+  //       console.log("retrived islogin", login);
+  //     }
+  //   } catch (e) {
+  //     console.log("error retriving async value", e);
+  //   }
+  // };
 
   render() {
-    this.verifyIfAlreadyLogin();
     return (
       <View style={this.styles.container}>
         <Text>Username</Text>

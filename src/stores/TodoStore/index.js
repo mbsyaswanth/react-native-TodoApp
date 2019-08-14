@@ -1,12 +1,16 @@
 import TodoItem from "../../Model/todoItem";
 import { observable, action, computed } from "mobx";
 import { filters } from "../../constants";
+import { persist, create } from "mobx-persist";
+
 class TodoStore {
-  @observable todos = [];
-  @observable filter = filters.all;
+  @persist("list", TodoItem) @observable todos = [];
+  @persist @observable filter = filters.all;
 
   @action.bound addTodo(todoDescription) {
-    this.todos.push(new TodoItem(todoDescription));
+    const item = new TodoItem();
+    item.setDefault(todoDescription);
+    this.todos.push(item);
     return this.todos[this.todos.length - 1];
   }
 

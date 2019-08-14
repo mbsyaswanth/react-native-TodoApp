@@ -2,17 +2,24 @@ import React, { Component } from "react";
 import BottomNav from "./BottomNav";
 import { ActionButton } from "react-native-material-ui";
 import { View, StyleSheet, Text, Button, AsyncStorage } from "react-native";
-import TodoItems from "./TodoItem";
 import { observer } from "mobx-react";
 import TodoStore from "../../stores/TodoStore";
 import ItemContainer from "./ItemContainer";
 import { observable } from "mobx";
 import EnterTodo from "./EnterTodo";
 import { Actions, ActionConst } from "react-native-router-flux";
+import { create, persist } from "mobx-persist";
+
+const hydrate = create({
+  storage: AsyncStorage,
+  jsonify: true
+});
+const store = new TodoStore();
+
+hydrate("todoStore", store);
 
 @observer
 class TodoApp extends Component {
-  store = new TodoStore();
   styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -37,7 +44,7 @@ class TodoApp extends Component {
 
   @observable addtodo = false;
   onPressLogout = () => {
-    AsyncStorage.clear();
+    AsyncStorage.removeItem("isLogin");
     Actions.login({ type: ActionConst.REPLACE });
   };
   handleAdd = () => {
@@ -57,16 +64,16 @@ class TodoApp extends Component {
         </View>
 
         {this.addtodo ? (
-          <EnterTodo add={this.store.addTodo} show={this.handleAdd} />
+          <EnterTodo add={store.addTodo} show={this.handleAdd} />
         ) : (
-          <ItemContainer store={this.store} />
+          <ItemContainer store={store} />
         )}
 
         <ActionButton
           onPress={this.handleAdd}
           style={{ positionContainer: this.styles.add }}
         />
-        <BottomNav store={this.store} />
+        <BottomNav store={store} />
       </View>
     );
   }

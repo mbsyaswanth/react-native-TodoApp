@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { BottomNavigation } from "react-native-material-ui";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { observer } from "mobx-react";
-
+import { filters } from "../../../constants";
 @observer
 class BottomNav extends Component {
   state = {
-    active: "all"
+    active: this.props.store.filter
   };
 
   styles = StyleSheet.create({
@@ -30,30 +30,30 @@ class BottomNav extends Component {
       <View style={this.styles.bottomNav}>
         <BottomNavigation active={this.state.active} hidden={false}>
           <BottomNavigation.Action
-            key="all"
+            key={filters.all}
             icon="list"
             label="all"
             onPress={() => {
-              this.setState({ active: "all" });
-              setFilter("ALL");
+              this.setState({ active: filters.all });
+              setFilter(filters.all);
             }}
           />
           <BottomNavigation.Action
-            key="active"
+            key={filters.active}
             icon="lock-open"
             label="Active"
             onPress={() => {
-              this.setState({ active: "active" });
-              setFilter("ACTIVE");
+              this.setState({ active: filters.active });
+              setFilter(filters.active);
             }}
           />
           <BottomNavigation.Action
-            key="completed"
+            key={filters.completed}
             icon="check-circle"
             label="Completed"
             onPress={() => {
-              this.setState({ active: "completed" });
-              setFilter("COMPLETED");
+              this.setState({ active: filters.completed });
+              setFilter(filters.completed);
             }}
           />
         </BottomNavigation>
