@@ -5,12 +5,28 @@ import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
 import * as RNLocalize from "react-native-localize";
-import i18n from "i18n-js";
-import memoize from "lodash.memoize";
+import {setI18nConfig} from "./src/Utils/TranslateHelpers"
 
 const store = new LoginStore();
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    setI18nConfig(); // set initial config
+  }
+
+  componentDidMount() {
+    RNLocalize.addEventListener("change", this.handleLocalizationChange);
+  }
+
+  componentWillUnmount() {
+    RNLocalize.removeEventListener("change", this.handleLocalizationChange);
+  }
+
+  handleLocalizationChange = () => {
+    setI18nConfig();
+    this.forceUpdate();
+  };
   render() {
     return (
       <Router>

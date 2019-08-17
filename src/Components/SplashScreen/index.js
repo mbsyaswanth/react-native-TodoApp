@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, AsyncStorage } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
+import { translate } from "../../Utils/TranslateHelpers";
 
 class SplashScreen extends Component {
   styles = {
@@ -37,7 +38,7 @@ class SplashScreen extends Component {
   render() {
     return (
       <View style={this.styles.container}>
-        <Text style={this.styles.logo}> AweTodo </Text>
+        <Text style={this.styles.logo}> {translate("awetodo")} </Text>
       </View>
     );
   }

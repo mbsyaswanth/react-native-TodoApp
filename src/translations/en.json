@@ -6,5 +6,6 @@
   "noactive": "No Active todo's",
   "logout": "Logout",
   "noall": "No todo's are added! Add some todo's using the '+' button below",
-  "login": "login"
+  "login": "login",
+  "awetodo": "AweTodo"
 }
