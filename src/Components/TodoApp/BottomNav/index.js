@@ -3,6 +3,8 @@ import { BottomNavigation } from "react-native-material-ui";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { observer } from "mobx-react";
 import { filters } from "../../../constants";
+import { translate } from "../../../Utils/TranslateHelpers";
+
 @observer
 class BottomNav extends Component {
   state = {
@@ -32,7 +34,7 @@ class BottomNav extends Component {
           <BottomNavigation.Action
             key={filters.all}
             icon="list"
-            label="all"
+            label={translate("all")}
             onPress={() => {
               this.setState({ active: filters.all });
               setFilter(filters.all);
@@ -41,7 +43,7 @@ class BottomNav extends Component {
           <BottomNavigation.Action
             key={filters.active}
             icon="lock-open"
-            label="Active"
+            label={translate("active")}
             onPress={() => {
               this.setState({ active: filters.active });
               setFilter(filters.active);
@@ -50,7 +52,7 @@ class BottomNav extends Component {
           <BottomNavigation.Action
             key={filters.completed}
             icon="check-circle"
-            label="Completed"
+            label={translate("completed")}
             onPress={() => {
               this.setState({ active: filters.completed });
               setFilter(filters.completed);

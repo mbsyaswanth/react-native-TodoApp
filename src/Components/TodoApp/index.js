@@ -9,6 +9,7 @@ import { observable } from "mobx";
 import EnterTodo from "./EnterTodo";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { create, persist } from "mobx-persist";
+import { translate } from "../../Utils/TranslateHelpers";
 
 const hydrate = create({
   storage: AsyncStorage,
@@ -57,7 +58,7 @@ class TodoApp extends Component {
           <Text style={this.styles.headerText}>Todo App</Text>
           <Button
             onPress={this.onPressLogout}
-            title="Logout"
+            title={translate("logout")}
             color="#843584"
             accessibilityLabel="a button to logout"
           />

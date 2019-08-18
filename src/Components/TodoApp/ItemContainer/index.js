@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, FlatList, Text } from "react-native";
 import TodoItem from "../TodoItem";
 import { observer } from "mobx-react";
+import { translate } from "../../../Utils/TranslateHelpers";
 
 @observer
 class ItemContainer extends Component {
@@ -18,24 +19,38 @@ class ItemContainer extends Component {
               alignItems: "center"
             }}
           >
-            <Text>
-              No todo's are added! Add Some todo's using the '+' button below
-            </Text>
+            <Text>{translate("noall")}</Text>
           </View>
         );
       }
-      return (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            padding: 20,
-            alignItems: "center"
-          }}
-        >
-          <Text>No {filter} todo's</Text>
-        </View>
-      );
+      if (filter === "ACTIVE") {
+        return (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              padding: 20,
+              alignItems: "center"
+            }}
+          >
+            <Text>{translate("noactive")}</Text>
+          </View>
+        );
+      }
+      if (filter === "COMPLETED") {
+        return (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              padding: 20,
+              alignItems: "center"
+            }}
+          >
+            <Text>{translate("nocompleted")}</Text>
+          </View>
+        );
+      }
     }
     return (
       <FlatList
