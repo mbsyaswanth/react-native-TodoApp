@@ -18,16 +18,9 @@ import { Actions, ActionConst } from "react-native-router-flux";
 import { create, persist } from "mobx-persist";
 import { translate } from "../../Utils/TranslateHelpers";
 
-const hydrate = create({
-  storage: AsyncStorage,
-  jsonify: true
-});
-const store = new TodoStore();
-
-hydrate("todoStore", store);
-
 @observer
 class TodoApp extends Component {
+  store = this.props.store;
   styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -64,14 +57,15 @@ class TodoApp extends Component {
         <View style={this.styles.header}>
           <Text style={this.styles.headerText}>{translate("awetodo")}</Text>
           <Picker
-            selectedValue={store.language}
+            selectedValue={this.store.language}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => {
-              store.setLanguage(itemValue);
+              this.store.setLanguage(itemValue);
             }}
           >
             <Picker.Item label="English" value="en" />
             <Picker.Item label="Telugu" value="tel" />
+            <Picker.Item label="Hindi" value="hi" />
           </Picker>
           <Button
             onPress={this.onPressLogout}
@@ -82,16 +76,16 @@ class TodoApp extends Component {
         </View>
 
         {this.addtodo ? (
-          <EnterTodo add={store.addTodo} show={this.handleAdd} />
+          <EnterTodo add={this.store.addTodo} show={this.handleAdd} />
         ) : (
-          <ItemContainer store={store} />
+          <ItemContainer store={this.store} />
         )}
 
         <ActionButton
           onPress={this.handleAdd}
           style={{ positionContainer: this.styles.add }}
         />
-        <BottomNav store={store} />
+        <BottomNav store={this.store} />
       </View>
     );
   }

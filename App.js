@@ -5,13 +5,25 @@ import { Router, Scene, Action } from "react-native-router-flux";
 import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
+import TodoStore from "./src/stores/TodoStore";
+import { create } from "mobx-persist";
+import { AsyncStorage } from "react-native";
 
-const store = new LoginStore();
+const hydrate = create({
+  storage: AsyncStorage,
+  jsonify: true
+});
+const loginStore = new LoginStore();
+const todoStore = new TodoStore();
+
+hydrate("todoStore", todoStore).then(() =>
+  todoStore.setLanguage(todoStore.language)
+);
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    setI18nConfig("en"); // set initial config
+    todoStore.setLanguage(todoStore.language);
   }
 
   render() {
@@ -22,10 +34,10 @@ export default class App extends Component {
           <Scene
             key="login"
             title={translate("login")}
-            login={store.login}
+            login={loginStore.login}
             component={Login}
           />
-          <Scene key="home" component={TodoApp} hideNavBar />
+          <Scene key="home" store={todoStore} component={TodoApp} hideNavBar />
         </Scene>
       </Router>
     );
