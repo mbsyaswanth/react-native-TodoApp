@@ -2,11 +2,16 @@ import TodoItem from "../../Model/todoItem";
 import { observable, action, computed } from "mobx";
 import { filters } from "../../constants";
 import { persist, create } from "mobx-persist";
-
+import { setI18nConfig } from "../../Utils/TranslateHelpers";
 class TodoStore {
   @persist("list", TodoItem) @observable todos = [];
   @persist @observable filter = filters.all;
   @observable language = "en";
+
+  @action.bound setLanguage(language) {
+    this.language = language;
+    setI18nConfig(this.language);
+  }
 
   @action.bound addTodo(todoDescription) {
     const item = new TodoItem();
