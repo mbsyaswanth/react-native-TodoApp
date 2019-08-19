@@ -5,14 +5,14 @@ import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
 import * as RNLocalize from "react-native-localize";
-import {setI18nConfig} from "./src/Utils/TranslateHelpers"
+import { setI18nConfig } from "./src/Utils/TranslateHelpers";
 
 const store = new LoginStore();
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    setI18nConfig(); // set initial config
+    setI18nConfig("en"); // set initial config
   }
 
   componentDidMount() {
@@ -24,7 +24,7 @@ export default class App extends Component {
   }
 
   handleLocalizationChange = () => {
-    setI18nConfig();
+    setI18nConfig("en");
     this.forceUpdate();
   };
   render() {

@@ -6,6 +6,7 @@ import { persist, create } from "mobx-persist";
 class TodoStore {
   @persist("list", TodoItem) @observable todos = [];
   @persist @observable filter = filters.all;
+  @observable language = "en";
 
   @action.bound addTodo(todoDescription) {
     const item = new TodoItem();

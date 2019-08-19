@@ -58,4 +58,10 @@ describe("TodoStore test cases", () => {
     todoStore.todos[0].toggleCompleted();
     expect(todoStore.activeCount).toBe(2);
   });
+
+  it("should check if language observable is set using setLanguage function", () => {
+    expect(todoStore.language).toBe("en");
+    todoStore.setLanguage("tel");
+    expect(todoStore.language).toBe("tel");
+  });
 });

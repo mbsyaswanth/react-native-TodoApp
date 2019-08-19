@@ -14,14 +14,12 @@ export const translate = memoize(
   (key, config) => (config ? key + JSON.stringify(config) : key)
 );
 
-export const setI18nConfig = () => {
+export const setI18nConfig = language => {
   // fallback if no available language fits
   const fallback = { languageTag: "en", isRTL: false };
 
   const { languageTag, isRTL } =
-    RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) ||
-    fallback;
-
+    { languageTag: language, isRTL: false } || fallback;
   // clear translation cache
   translate.cache.clear();
   // update layout direction

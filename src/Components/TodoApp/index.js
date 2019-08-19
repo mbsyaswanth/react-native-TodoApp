@@ -10,6 +10,7 @@ import EnterTodo from "./EnterTodo";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { create, persist } from "mobx-persist";
 import { translate } from "../../Utils/TranslateHelpers";
+import { setI18nConfig } from "../../Utils/TranslateHelpers";
 
 const hydrate = create({
   storage: AsyncStorage,
@@ -21,6 +22,7 @@ hydrate("todoStore", store);
 
 @observer
 class TodoApp extends Component {
+  @observer language = "en";
   styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -52,6 +54,7 @@ class TodoApp extends Component {
     this.addtodo = !this.addtodo;
   };
   render() {
+    setI18nConfig(this.language);
     return (
       <View style={this.styles.container}>
         <View style={this.styles.header}>
