@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import BottomNav from "./BottomNav";
 import { ActionButton } from "react-native-material-ui";
-import { View, StyleSheet, Text, Button, AsyncStorage } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  AsyncStorage,
+  Picker
+} from "react-native";
 import { observer } from "mobx-react";
 import TodoStore from "../../stores/TodoStore";
 import ItemContainer from "./ItemContainer";
@@ -10,7 +17,6 @@ import EnterTodo from "./EnterTodo";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { create, persist } from "mobx-persist";
 import { translate } from "../../Utils/TranslateHelpers";
-import { setI18nConfig } from "../../Utils/TranslateHelpers";
 
 const hydrate = create({
   storage: AsyncStorage,
@@ -22,7 +28,6 @@ hydrate("todoStore", store);
 
 @observer
 class TodoApp extends Component {
-  @observer language = "en";
   styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -54,11 +59,20 @@ class TodoApp extends Component {
     this.addtodo = !this.addtodo;
   };
   render() {
-    setI18nConfig(this.language);
     return (
       <View style={this.styles.container}>
         <View style={this.styles.header}>
           <Text style={this.styles.headerText}>Todo App</Text>
+          {/* <Picker
+            selectedValue={this.state.language}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ language: itemValue })
+            }
+          >
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker> */}
           <Button
             onPress={this.onPressLogout}
             title={translate("logout")}

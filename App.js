@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import { setI18nConfig } from "./src/Utils/TranslateHelpers";
 import TodoApp from "./src/Components/TodoApp";
 import { Router, Scene, Action } from "react-native-router-flux";
 import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
-import * as RNLocalize from "react-native-localize";
-import { setI18nConfig } from "./src/Utils/TranslateHelpers";
 
 const store = new LoginStore();
 
@@ -15,18 +14,6 @@ export default class App extends Component {
     setI18nConfig("en"); // set initial config
   }
 
-  componentDidMount() {
-    RNLocalize.addEventListener("change", this.handleLocalizationChange);
-  }
-
-  componentWillUnmount() {
-    RNLocalize.removeEventListener("change", this.handleLocalizationChange);
-  }
-
-  handleLocalizationChange = () => {
-    setI18nConfig("en");
-    this.forceUpdate();
-  };
   render() {
     return (
       <Router>

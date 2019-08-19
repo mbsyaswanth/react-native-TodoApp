@@ -14,11 +14,8 @@ export const translate = memoize(
 );
 
 export const setI18nConfig = language => {
-  // fallback if no available language fits
-  const fallback = { languageTag: "en", isRTL: false };
-
-  const { languageTag, isRTL } =
-    { languageTag: language, isRTL: false } || fallback;
+  const languageTag = language;
+  const isRTL = false;
   // clear translation cache
   translate.cache.clear();
   // update layout direction

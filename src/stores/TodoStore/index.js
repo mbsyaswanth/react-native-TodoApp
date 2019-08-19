@@ -8,8 +8,8 @@ class TodoStore {
   @persist @observable filter = filters.all;
   @observable language = "en";
 
-  @action.bound setLanguage(language) {
-    this.language = language;
+  @action.bound setLanguage(lang) {
+    this.language = lang;
     setI18nConfig(this.language);
   }
 

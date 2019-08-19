@@ -30,7 +30,6 @@ target 'AweTodoApp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
   target 'AweTodoAppTests' do
     inherit! :search_paths
