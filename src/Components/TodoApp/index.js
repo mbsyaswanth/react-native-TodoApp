@@ -2,44 +2,25 @@ import React, { Component } from "react";
 import BottomNav from "./BottomNav";
 import { ActionButton } from "react-native-material-ui";
 import {
-  View,
   StyleSheet,
-  Text,
   Button,
   AsyncStorage,
   Picker
 } from "react-native";
 import { observer } from "mobx-react";
-import TodoStore from "../../stores/TodoStore";
 import ItemContainer from "./ItemContainer";
 import { observable } from "mobx";
 import EnterTodo from "./EnterTodo";
 import { Actions, ActionConst } from "react-native-router-flux";
-import { create, persist } from "mobx-persist";
 import { translate } from "../../Utils/TranslateHelpers";
+import {Container, Header, HeaderText} from "./styledComponents";
 
 @observer
 class TodoApp extends Component {
   store = this.props.store;
   styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingBottom: 50
-    },
     add: {
       bottom: 60
-    },
-    headerText: {
-      color: "white"
-    },
-    header: {
-      backgroundColor: "blue",
-      height: 40,
-      color: "white",
-      padding: 15,
-      justifyContent: "space-between",
-      flexDirection: "row",
-      alignItems: "center"
     }
   });
 
@@ -53,9 +34,9 @@ class TodoApp extends Component {
   };
   render() {
     return (
-      <View key={Date.now()} style={this.styles.container}>
-        <View style={this.styles.header}>
-          <Text style={this.styles.headerText}>{translate("awetodo")}</Text>
+      <Container key={Date.now()}>
+        <Header>
+          <HeaderText>{translate("awetodo")}</HeaderText>
           <Picker
             selectedValue={this.store.language}
             style={{ height: 50, width: 100 }}
@@ -73,7 +54,7 @@ class TodoApp extends Component {
             color="#843584"
             accessibilityLabel="a button to logout"
           />
-        </View>
+        </Header>
 
         {this.addtodo ? (
           <EnterTodo add={this.store.addTodo} show={this.handleAdd} />
@@ -86,7 +67,7 @@ class TodoApp extends Component {
           style={{ positionContainer: this.styles.add }}
         />
         <BottomNav store={this.store} />
-      </View>
+      </Container>
     );
   }
 }

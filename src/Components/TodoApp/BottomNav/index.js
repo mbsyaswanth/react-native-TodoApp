@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { BottomNavigation } from "react-native-material-ui";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { observer } from "mobx-react";
 import { filters } from "../../../constants";
 import { translate } from "../../../Utils/TranslateHelpers";
+import {Container} from "./styledComponents";
 
 @observer
 class BottomNav extends Component {
@@ -11,25 +11,12 @@ class BottomNav extends Component {
     active: this.props.store.filter
   };
 
-  styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-    add: {
-      bottom: 70
-    },
-    bottomNav: {
-      position: "absolute",
-      bottom: 0,
-      width: Dimensions.get("window").width,
-      backgroundColor: "yellow"
-    }
-  });
+  
 
   render() {
     const { setFilter } = this.props.store;
     return (
-      <View style={this.styles.bottomNav}>
+      <Container>
         <BottomNavigation active={this.state.active} hidden={false}>
           <BottomNavigation.Action
             key={filters.all}
@@ -59,7 +46,7 @@ class BottomNav extends Component {
             }}
           />
         </BottomNavigation>
-      </View>
+      </Container>
     );
   }
 }

@@ -1,41 +1,34 @@
 import React, { Component } from "react";
-import { View, FlatList, Text } from "react-native";
+import { FlatList, Text } from "react-native";
 import TodoItem from "../TodoItem";
 import { observer } from "mobx-react";
 import { translate } from "../../../Utils/TranslateHelpers";
+import {HelpMsg} from "./styledComponents"
 
 @observer
 class ItemContainer extends Component {
-  styles = {
-    helpMsg: {
-      flex: 1,
-      justifyContent: "center",
-      padding: 20,
-      alignItems: "center"
-    }
-  };
   displayList = () => {
     const { filteredList, filter, removeTodo } = this.props.store;
     if (filteredList.length === 0) {
       if (filter === "ALL") {
         return (
-          <View style={this.styles.helpMsg}>
+          <HelpMsg>
             <Text>{translate("noall")}</Text>
-          </View>
+          </HelpMsg>
         );
       }
       if (filter === "ACTIVE") {
         return (
-          <View style={this.styles.helpMsg}>
+          <HelpMsg>
             <Text>{translate("noactive")}</Text>
-          </View>
+          </HelpMsg>
         );
       }
       if (filter === "COMPLETED") {
         return (
-          <View style={this.styles.helpMsg}>
+          <HelpMsg>
             <Text>{translate("nocompleted")}</Text>
-          </View>
+          </HelpMsg>
         );
       }
     }
