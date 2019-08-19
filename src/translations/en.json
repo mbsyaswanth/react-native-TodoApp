@@ -7,5 +7,11 @@
   "logout": "Logout",
   "noall": "No todo's are added! Add some todo's using the '+' button below",
   "login": "login",
-  "awetodo": "AweTodo"
+  "awetodo": "AweTodo",
+  "warning": "Warning!",
+  "warningText": "Do you really want to delete?",
+  "cancel": "cancel",
+  "delete": "delete",
+  "username": "Username",
+  "password": "Password"
 }

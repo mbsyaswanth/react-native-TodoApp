@@ -6,47 +6,34 @@ import { translate } from "../../../Utils/TranslateHelpers";
 
 @observer
 class ItemContainer extends Component {
+  styles = {
+    helpMsg: {
+      flex: 1,
+      justifyContent: "center",
+      padding: 20,
+      alignItems: "center"
+    }
+  };
   displayList = () => {
     const { filteredList, filter, removeTodo } = this.props.store;
     if (filteredList.length === 0) {
       if (filter === "ALL") {
         return (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              padding: 20,
-              alignItems: "center"
-            }}
-          >
+          <View style={this.styles.helpMsg}>
             <Text>{translate("noall")}</Text>
           </View>
         );
       }
       if (filter === "ACTIVE") {
         return (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              padding: 20,
-              alignItems: "center"
-            }}
-          >
+          <View style={this.styles.helpMsg}>
             <Text>{translate("noactive")}</Text>
           </View>
         );
       }
       if (filter === "COMPLETED") {
         return (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              padding: 20,
-              alignItems: "center"
-            }}
-          >
+          <View style={this.styles.helpMsg}>
             <Text>{translate("nocompleted")}</Text>
           </View>
         );
@@ -62,7 +49,6 @@ class ItemContainer extends Component {
   };
 
   render() {
-    const { filteredList, removeTodo } = this.props.store;
     return this.displayList();
   }
 }

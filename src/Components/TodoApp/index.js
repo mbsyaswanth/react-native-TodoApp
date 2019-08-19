@@ -60,19 +60,19 @@ class TodoApp extends Component {
   };
   render() {
     return (
-      <View style={this.styles.container}>
+      <View key={Date.now()} style={this.styles.container}>
         <View style={this.styles.header}>
           <Text style={this.styles.headerText}>Todo App</Text>
-          {/* <Picker
-            selectedValue={this.state.language}
+          <Picker
+            selectedValue={store.language}
             style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({ language: itemValue })
-            }
+            onValueChange={(itemValue, itemIndex) => {
+              store.setLanguage(itemValue);
+            }}
           >
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker> */}
+            <Picker.Item label="English" value="en" />
+            <Picker.Item label="Telugu" value="tel" />
+          </Picker>
           <Button
             onPress={this.onPressLogout}
             title={translate("logout")}

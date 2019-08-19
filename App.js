@@ -5,6 +5,7 @@ import { Router, Scene, Action } from "react-native-router-flux";
 import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
+import { View } from "react-native";
 
 const store = new LoginStore();
 
@@ -12,6 +13,14 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     setI18nConfig("en"); // set initial config
+  }
+
+  componentDidMount() {
+    this.forceUpdate();
+  }
+
+  componentWillUnmount() {
+    this.forceUpdate();
   }
 
   render() {
