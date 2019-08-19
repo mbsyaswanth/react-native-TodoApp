@@ -11,6 +11,8 @@ import {
 import { Checkbox, IconToggle, Icon } from "react-native-material-ui";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
+import { translate } from "../../../Utils/TranslateHelpers";
+
 @observer
 class TodoItem extends Component {
   @observable isEditing = false;
@@ -52,15 +54,18 @@ class TodoItem extends Component {
     // alert("delete?");
     console.log("in alert");
     Alert.alert(
-      "Warning!",
-      "Do you really want to delete?",
+      translate("warning"),
+      translate("warningText"),
       [
         {
-          text: "Cancel",
+          text: translate("cancel"),
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "Delete", onPress: () => this.props.delete(this.props.todo) }
+        {
+          text: translate("delete"),
+          onPress: () => this.props.delete(this.props.todo)
+        }
       ],
       { cancelable: false }
     );
@@ -112,7 +117,7 @@ class TodoItem extends Component {
               padding: 5
             }}
             onChangeText={this.handleEdit}
-            placeholder="What needs to be done?"
+            placeholder={translate("enterTodoText")}
             value={this.input}
             onSubmitEditing={this.submitEdit}
           />

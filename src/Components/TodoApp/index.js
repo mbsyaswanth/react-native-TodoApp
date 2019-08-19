@@ -62,7 +62,7 @@ class TodoApp extends Component {
     return (
       <View key={Date.now()} style={this.styles.container}>
         <View style={this.styles.header}>
-          <Text style={this.styles.headerText}>Todo App</Text>
+          <Text style={this.styles.headerText}>{translate("awetodo")}</Text>
           <Picker
             selectedValue={store.language}
             style={{ height: 50, width: 100 }}

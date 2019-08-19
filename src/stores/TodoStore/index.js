@@ -6,7 +6,7 @@ import { setI18nConfig } from "../../Utils/TranslateHelpers";
 class TodoStore {
   @persist("list", TodoItem) @observable todos = [];
   @persist @observable filter = filters.all;
-  @observable language = "en";
+  @persist @observable language = "en";
 
   @action.bound setLanguage(lang) {
     this.language = lang;

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { setI18nConfig } from "./src/Utils/TranslateHelpers";
+import { setI18nConfig, translate } from "./src/Utils/TranslateHelpers";
 import TodoApp from "./src/Components/TodoApp";
 import { Router, Scene, Action } from "react-native-router-flux";
 import Login from "./src/Components/Login";
 import LoginStore from "./src/stores/AuthStore";
 import SplashScreen from "./src/Components/SplashScreen";
-import { View } from "react-native";
 
 const store = new LoginStore();
 
@@ -15,27 +14,14 @@ export default class App extends Component {
     setI18nConfig("en"); // set initial config
   }
 
-  componentDidMount() {
-    this.forceUpdate();
-  }
-
-  componentWillUnmount() {
-    this.forceUpdate();
-  }
-
   render() {
     return (
       <Router>
-        <Scene key="root">
-          <Scene
-            key="splashscreen"
-            component={SplashScreen}
-            initial
-            hideNavBar
-          />
+        <Scene key="root" hideNavBar>
+          <Scene key="splashscreen" component={SplashScreen} initial />
           <Scene
             key="login"
-            title="Login"
+            title={translate("login")}
             login={store.login}
             component={Login}
           />

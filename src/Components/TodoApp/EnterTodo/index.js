@@ -8,6 +8,7 @@ import {
   Alert
 } from "react-native";
 import { observer } from "mobx-react";
+import { translate } from "../../../Utils/TranslateHelpers";
 
 @observer
 class EnterTodo extends Component {
@@ -27,7 +28,7 @@ class EnterTodo extends Component {
       <TextInput
         style={{ height: 40, borderColor: "gray", borderWidth: 1, padding: 5 }}
         onChangeText={text => this.setState({ text })}
-        placeholder="What needs to be done?"
+        placeholder={translate("enterTodoText")}
         value={this.state.text}
         onSubmitEditing={this.handleSubmit}
       />

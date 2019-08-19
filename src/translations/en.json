@@ -6,12 +6,16 @@
   "noactive": "No Active todo's",
   "logout": "Logout",
   "noall": "No todo's are added! Add some todo's using the '+' button below",
-  "login": "login",
+  "login": "Login",
   "awetodo": "AweTodo",
   "warning": "Warning!",
   "warningText": "Do you really want to delete?",
   "cancel": "cancel",
   "delete": "delete",
   "username": "Username",
-  "password": "Password"
+  "password": "Password",
+  "enterTodoText": "What needs to be done?",
+  "error": "Error",
+  "errorText": "Please enter valid details",
+  "ok": "Ok"
 }

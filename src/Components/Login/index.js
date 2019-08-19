@@ -48,15 +48,15 @@ class Login extends Component {
       Actions.home({ type: ActionConst.REPLACE });
     } else {
       Alert.alert(
-        "Error",
-        "Please enter valid details",
+        translate("error"),
+        translate("errorText"),
         [
           {
-            text: "Cancel",
+            text: translate("cancel"),
             onPress: () => console.log("Cancel Pressed"),
             style: "cancel"
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: translate("ok"), onPress: () => console.log("OK Pressed") }
         ],
         { cancelable: false }
       );
@@ -75,18 +75,17 @@ class Login extends Component {
   render() {
     return (
       <View style={this.styles.container}>
-        <Text>Username</Text>
         <TextInput
           value={this.username}
           style={this.styles.input}
           onChangeText={username => (this.username = username)}
-          placeholder={"Username"}
+          placeholder={translate("username")}
         />
-        <Text>Password</Text>
+
         <TextInput
           value={this.password}
           style={this.styles.input}
-          placeholder={"Password"}
+          placeholder={translate("password")}
           secureTextEntry={true}
           onChangeText={password => (this.password = password)}
         />
