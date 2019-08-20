@@ -14,7 +14,7 @@ import { observer } from "mobx-react";
 import { observable, action } from "mobx";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { translate } from "../../Utils/TranslateHelpers";
-
+import {Input, Container} from "./styledComponents";
 @observer
 class Login extends Component {
   styles = StyleSheet.create({
@@ -74,15 +74,15 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={this.styles.container}>
-        <TextInput
+      <Container>
+        <Input
           value={this.username}
           style={this.styles.input}
           onChangeText={username => (this.username = username)}
           placeholder={translate("username")}
         />
 
-        <TextInput
+        <Input
           value={this.password}
           style={this.styles.input}
           placeholder={translate("password")}
@@ -91,7 +91,7 @@ class Login extends Component {
         />
         <Button title={translate("login")} onPress={this.onLogin} />
         {this.isLoading && <ActivityIndicator size="large" color="#0003ff" />}
-      </View>
+      </Container>
     );
   }
 }

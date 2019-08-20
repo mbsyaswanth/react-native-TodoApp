@@ -12,7 +12,13 @@ import { Checkbox, IconToggle, Icon } from "react-native-material-ui";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
 import { translate } from "../../../Utils/TranslateHelpers";
-import {Item, TodoText} from "./styledComponents";
+import {
+  Item,
+  TodoText,
+  Input,
+  CheckContainer,
+  TextContainer
+} from "./styledComponents";
 
 @observer
 class TodoItem extends Component {
@@ -72,7 +78,7 @@ class TodoItem extends Component {
       <>
         {!this.isEditing ? (
           <Item>
-            <View style={{ width: 50 }}>
+            <CheckContainer>
               <Checkbox
                 onLongPress={this.handleLongPress}
                 label=""
@@ -80,13 +86,10 @@ class TodoItem extends Component {
                 checked={isCompleted}
                 onCheck={this.onCheck}
               />
-            </View>
-            <TouchableOpacity
-              onLongPress={this.handleLongPress}
-              style={{ flex: 1 }}
-            >
+            </CheckContainer>
+            <TextContainer onLongPress={this.handleLongPress}>
               <TodoText todo={this.props.todo}>{description}</TodoText>
-            </TouchableOpacity>
+            </TextContainer>
 
             <IconToggle
               style={this.styles.delete}
@@ -95,13 +98,7 @@ class TodoItem extends Component {
             />
           </Item>
         ) : (
-          <TextInput
-            style={{
-              height: 40,
-              borderColor: "gray",
-              borderWidth: 1,
-              padding: 5
-            }}
+          <Input
             onChangeText={this.handleEdit}
             placeholder={translate("enterTodoText")}
             value={this.input}

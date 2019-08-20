@@ -1,28 +1,18 @@
 import React, { Component } from "react";
 import BottomNav from "./BottomNav";
 import { ActionButton } from "react-native-material-ui";
-import {
-  StyleSheet,
-  Button,
-  AsyncStorage,
-  Picker
-} from "react-native";
+import { StyleSheet, Button, AsyncStorage, Picker } from "react-native";
 import { observer } from "mobx-react";
 import ItemContainer from "./ItemContainer";
 import { observable } from "mobx";
 import EnterTodo from "./EnterTodo";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { translate } from "../../Utils/TranslateHelpers";
-import {Container, Header, HeaderText} from "./styledComponents";
+import { Container, Header, HeaderText } from "./styledComponents";
 
 @observer
 class TodoApp extends Component {
   store = this.props.store;
-  styles = StyleSheet.create({
-    add: {
-      bottom: 60
-    }
-  });
 
   @observable addtodo = false;
   onPressLogout = () => {
@@ -64,7 +54,11 @@ class TodoApp extends Component {
 
         <ActionButton
           onPress={this.handleAdd}
-          style={{ positionContainer: this.styles.add }}
+          style={{
+            positionContainer: {
+              bottom: 60
+            }
+          }}
         />
         <BottomNav store={this.store} />
       </Container>

@@ -2,23 +2,8 @@ import React, { Component } from "react";
 import { Text, View, AsyncStorage } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { translate } from "../../Utils/TranslateHelpers";
-
+import { Container, Logo } from "./styledComponents";
 class SplashScreen extends Component {
-  styles = {
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor:
-        "linear-gradient(45deg, rgb(140, 85, 250) 0%,rgb(200, 215, 253) 75%,rgb(143, 230, 243) 100%)"
-    },
-    logo: {
-      fontSize: 45,
-      fontWeight: "bold",
-      color: "white"
-    }
-  };
-
   componentDidMount() {
     setTimeout(async () => {
       try {
@@ -37,9 +22,9 @@ class SplashScreen extends Component {
 
   render() {
     return (
-      <View style={this.styles.container}>
-        <Text style={this.styles.logo}> {translate("awetodo")} </Text>
-      </View>
+      <Container>
+        <Logo> {translate("awetodo")} </Logo>
+      </Container>
     );
   }
 }
